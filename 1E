@@ -2028,6 +2028,8 @@ const WEEK_PRESETS = {
     6: ["MATHS_A", "PHYSICS"],
     7: ["MATHS_B", "CHEMISTRY"],
     8: ["MATHS_A", "MATHS_B", "PHYSICS" ,"CHEMISTRY"],
+    9: ["BZ", "PHYSICS" ,"CHEMISTRY"],
+    10: ["MATHS", "PHYSICS" ,"CHEMISTRY"],
 };
 
 // =============================================
