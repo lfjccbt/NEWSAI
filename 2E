@@ -2011,19 +2011,73 @@ console.log('🔒 AUTO FULL SCREEN ACTIVE - Will force full screen without click
 
 <script>
 
-let EXAM_SETUP = {
-    subjects: [
-        { name: "BOTANY", questions: 60, numerical: 0 },
-        { name: "PHYSICS", questions: 60, numerical: 0 }
-    ],
-    duration: 120, // minutes
-    activeForForms: ["BOTANY", "PHYSICS"],
-    correctMark: 4,
-    wrongMark: -1
+// =============================================
+// 📚 CHANGE THIS NUMBER FOR THE WEEK
+// =============================================
+const EXAM_WEEK = 1;  // ← Change this: 1,2,3,4,5,6,7,8
+
+// =============================================
+// WEEK PATTERNS (Set this up once)
+// =============================================
+const WEEK_PRESETS = {
+    1: ["BOTANY", "PHYSICS"],
+    2: ["ZOOLOGY", "CHEMISTRY"],
+    3: ["BOTANY", "PHYSICS", "CHEMISTRY"],
+    4: ["ZOOLOGY", "PHYSICS", "CHEMISTRY"],
+    5: ["BOTANY", "ZOOLOGY","PHYSICS" ,"CHEMISTRY"],
+    6: ["MATHS_A", "PHYSICS"],
+    7: ["MATHS_B", "CHEMISTRY"],
+    8: ["MATHS_A", "MATHS_B", "PHYSICS" ,"CHEMISTRY"],
+    9: ["BZ", "PHYSICS" ,"CHEMISTRY"],
+    10: ["MATHS", "PHYSICS" ,"CHEMISTRY"],
 };
-    
-// Calculate TOTAL_QUESTIONS immediately
-let TOTAL_QUESTIONS = 0;   
+
+// =============================================
+// ALL SUBJECTS (Define once)
+// =============================================
+const ALL_SUBJECTS = {
+    "MATHS_A":   { questions: 60, numerical: 0 },
+    "MATHS_B":   { questions: 60, numerical: 0 },
+    "MATHS":     { questions: 60, numerical: 0 },
+    "PHYSICS":   { questions: 60, numerical: 0 },
+    "CHEMISTRY": { questions: 60, numerical: 0 },
+    "BOTANY":    { questions: 60, numerical: 0 },
+    "ZOOLOGY":   { questions: 60, numerical: 0 },
+    "BZ":        { questions: 60, numerical: 0 },
+};
+
+// =============================================
+// AUTO-BUILD (Don't change anything below)
+// =============================================
+const ACTIVE_SUBJECTS_LIST = WEEK_PRESETS[EXAM_WEEK] || ["MATHS_B", "CHEMISTRY"];
+
+function buildExamSetup() {
+    const subjects = [];
+    ACTIVE_SUBJECTS_LIST.forEach(subjectName => {
+        if (ALL_SUBJECTS[subjectName]) {
+            subjects.push({
+                name: subjectName,
+                questions: ALL_SUBJECTS[subjectName].questions,
+                numerical: ALL_SUBJECTS[subjectName].numerical || 0
+            });
+        }
+    });
+    if (subjects.length === 0) {
+        subjects.push({ name: "MATHS_B", questions: 25, numerical: 0 });
+    }
+    return {
+        subjects: subjects,
+        duration: 120,
+        activeForForms: subjects.map(s => s.name),
+        correctMark: 4,
+        wrongMark: -1
+    };
+}
+
+const EXAM_SETUP = buildExamSetup();
+
+// Calculate TOTAL_QUESTIONS
+let TOTAL_QUESTIONS = 0;
 let currentStart = 1;
 EXAM_SETUP.subjects.forEach(subject => {
     subject.start = currentStart;
@@ -2032,10 +2086,9 @@ EXAM_SETUP.subjects.forEach(subject => {
     subject.numericalStart = subject.end - subject.numerical + 1;
     currentStart = subject.end + 1;
 });
-TOTAL_QUESTIONS = currentStart - 1; // This sets the total
+TOTAL_QUESTIONS = currentStart - 1;
 const EXAM_DURATION_MINUTES = EXAM_SETUP.duration;
 const ACTIVE_EXAM_SUBJECTS = EXAM_SETUP.activeForForms;
-
 
 const SUBJECTS = EXAM_SETUP.subjects.map(s => ({
     name: s.name,
