@@ -2020,28 +2020,28 @@ const EXAM_WEEK = 1;  // ← Change this: 1,2,3,4,5,6,7,8
 // WEEK PATTERNS (Set this up once)
 // =============================================
 const WEEK_PRESETS = {
-    1: ["MATHS_A", "PHYSICS"],
-    2: ["MATHS_B", "CHEMISTRY"],
-    3: ["MATHS_A", "PHYSICS", "CHEMISTRY"],
-    4: ["MATHS_B", "PHYSICS", "CHEMISTRY"],
-    5: ["MATHS", "PHYSICS" ,"CHEMISTRY"],
-    6: ["BOTANY", "PHYSICS"],
-    7: ["ZOOLOGY", "CHEMISTRY"],
-    8: ["BOTANY", "ZOOLOGY", "PHYSICS" ,"CHEMISTRY"],
+    1: ["BOTANY", "PHYSICS"],
+    2: ["ZOOLOGY", "CHEMISTRY"],
+    3: ["BOTANY", "PHYSICS", "CHEMISTRY"],
+    4: ["ZOOLOGY", "PHYSICS", "CHEMISTRY"],
+    5: ["BOTANY", "ZOOLOGY","PHYSICS" ,"CHEMISTRY"],
+    6: ["MATHS_A", "PHYSICS"],
+    7: ["MATHS_B", "CHEMISTRY"],
+    8: ["MATHS_A", "MATHS_B", "PHYSICS" ,"CHEMISTRY"],
 };
 
 // =============================================
 // ALL SUBJECTS (Define once)
 // =============================================
 const ALL_SUBJECTS = {
-    "MATHS_A":   { questions: 25, numerical: 0 },
-    "MATHS_B":   { questions: 25, numerical: 0 },
-    "MATHS":     { questions: 25, numerical: 0 },
-    "PHYSICS":   { questions: 25, numerical: 0 },
-    "CHEMISTRY": { questions: 25, numerical: 0 },
-    "BOTANY":    { questions: 25, numerical: 0 },
-    "ZOOLOGY":   { questions: 25, numerical: 0 },
-    "BZ":        { questions: 25, numerical: 0 },
+    "MATHS_A":   { questions: 60, numerical: 0 },
+    "MATHS_B":   { questions: 60, numerical: 0 },
+    "MATHS":     { questions: 60, numerical: 0 },
+    "PHYSICS":   { questions: 60, numerical: 0 },
+    "CHEMISTRY": { questions: 60, numerical: 0 },
+    "BOTANY":    { questions: 60, numerical: 0 },
+    "ZOOLOGY":   { questions: 60, numerical: 0 },
+    "BZ":        { questions: 60, numerical: 0 },
 };
 
 // =============================================
