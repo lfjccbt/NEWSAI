@@ -2024,11 +2024,13 @@ const WEEK_PRESETS = {
     2: ["MATHS_B", "CHEMISTRY"],
     3: ["MATHS_A", "PHYSICS", "CHEMISTRY"],
     4: ["MATHS_B", "PHYSICS", "CHEMISTRY"],
-    5: ["MATHS", "PHYSICS" ,"CHEMISTRY"],
+    5: ["MATHS_A", "MATHS_B","PHYSICS" ,"CHEMISTRY"],
     6: ["BOTANY", "PHYSICS"],
     7: ["ZOOLOGY", "CHEMISTRY"],
     8: ["BOTANY", "ZOOLOGY", "PHYSICS" ,"CHEMISTRY"],
-};
+    9: ["MATHS", "PHYSICS" ,"CHEMISTRY"],
+    10: ["BZ", "PHYSICS" ,"CHEMISTRY"],
+   };
 
 // =============================================
 // ALL SUBJECTS (Define once)
@@ -2087,6 +2089,10 @@ EXAM_SETUP.subjects.forEach(subject => {
 TOTAL_QUESTIONS = currentStart - 1;
 const EXAM_DURATION_MINUTES = EXAM_SETUP.duration;
 const ACTIVE_EXAM_SUBJECTS = EXAM_SETUP.activeForForms;
+
+console.log('📚 Week:', EXAM_WEEK);
+console.log('📚 Subjects:', EXAM_SETUP.subjects.map(s => s.name).join(', '));
+console.log('📊 Total Questions:', TOTAL_QUESTIONS);
 
 const SUBJECTS = EXAM_SETUP.subjects.map(s => ({
     name: s.name,
